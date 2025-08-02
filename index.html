@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smarter Meal Making</title>
+    <link rel="icon" href="images/smarter_meal_making_favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <header>
+        <div class="logo">
+  <img src="images/smarter_meal_making_logo.svg" alt="Smarter Meal Making Logo" width="40" height="40" />
+  <h1>Smarter Meal Making</h1></div>
+  <p>Your Customized Nutrition Planner</p>
+</header>
+<main>
+    <section id="recipe-search">
+        <h2>Search Your Recipes</h2>        
+  <form id="searchForm">
+    <input type="text" id="query" placeholder="Search recipes..." />
+    <input type="text" id="cuisine" placeholder="Cuisine (e.g. Indian)" />
+    <input type="text" id="diet" placeholder="Diet (e.g. vegetarian)" />
+    <input type="text" id="intolerances" placeholder="Intolerances (e.g. gluten)" />
+    <button type="submit">Search</button>
+  </form>
+<div id="results"></div>
+    </section>
+      <section id="nutrition-info">
+        <h2>Nutrition Breakdown</h2>
+        <!-- Nutrition data will come here-->
+    </section>
+    <section id="meal-planner">
+        <h2>Weekly Meal Planner</h2>
+        <!-- Drag-and-drop planner will come here-->
+    </section>
+    <section id="grocery-list">
+        <h2>Grocery List</h2>
+        <!-- Auto-generated list will come here-->
+    </section>
+</main>
+<footer>WDD 330 | Final Project on Smarter Meal Making | Design and Developed by Sree Ranganath</footer>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

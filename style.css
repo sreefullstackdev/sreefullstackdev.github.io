@@ -1,0 +1,149 @@
+:root {
+  --color-basil: #6DE45F;
+  --color-mint: #DFF5E1;
+  --color-wheat: #F5D7A1;
+  --color-ink: #2E2E2E;
+  --color-white: #FAFAFA;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-white);
+  color: var(--color-ink);
+}
+
+header {
+  background-color: var(--mint);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--basil);
+}
+
+h1, h2, h3 {
+  color: var(--color-ink);
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.logo img {
+  width: 200px;
+  height: 200px;
+}
+
+.logo h1 {
+  font-size: 2rem;
+  color: var(--basil);
+  margin: 0;
+}
+
+.logo svg {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+main {
+  max-width: 1600px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: var(--color-mint);
+  border-radius: 8px;
+}
+
+section {
+  margin-bottom: 2rem;
+  background-color: var(--mint);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--wheat);
+  color: var(--ink);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+form input {
+  padding: 0.5rem;
+  flex: 1 1 200px;
+  border: 1px solid var(--color-wheat);
+  border-radius: 4px;
+  background-color: var(--color-white);
+  color: var(--color-ink);
+}
+
+form button {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-basil);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: var(--color-wheat);
+  color: var(--color-ink);
+}
+
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.recipe-card, .recipe details {
+  flex: 1 1 300px;
+  max-width: 300px;
+  border: 1px solid var(--color-wheat);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: var(--color-white);
+  text-align: center;
+}
+
+.recipe-card img, .recipe-details img {
+  max-width: 100%;  
+  border-radius: 10px;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-basil);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-wheat);
+  color: var(--color-ink);
+}
