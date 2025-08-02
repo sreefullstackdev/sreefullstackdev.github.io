@@ -14,5 +14,6 @@ Fronted       -  HTML, CSS, JavaScript (ES Modules)
 APIs          -  Spoonacular, and Nutritionix
 Architecture  -  Modular JS
 
-Trello Board:
-https://trello.com/b/MxHKagea/smarter-meal-making
+Source: https://github.com/sreefullstackdev/sreefullstackdev.github.io.git
+Site: https://sreefullstackdev.github.io/
+Trello Board: https://trello.com/b/MxHKagea/smarter-meal-making
