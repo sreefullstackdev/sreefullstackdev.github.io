@@ -1,21 +1,13 @@
-:root {
-  --color-basil: #6DE45F;
-  --color-mint: #DFF5E1;
-  --color-wheat: #F5D7A1;
-  --color-ink: #2E2E2E;
-  --color-white: #FAFAFA;
-}
-
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--color-white);
-  color: var(--color-ink);
+  background-color: #FAFAFA;
+  color: #2E2E2E;
 }
 
 header {
-  background-color: var(--mint);
+  background-color: #DFF5E1;
   text-align: center;
   padding: 1.5rem;
 }
@@ -23,11 +15,11 @@ header {
 header h1 {
   margin: 0;
   font-size: 2rem;
-  color: var(--basil);
+  color: #6DE45F;
 }
 
 h1, h2, h3 {
-  color: var(--color-ink);
+  color: #2E2E2E;
   text-align: center;
 }
 
@@ -46,7 +38,7 @@ h1, h2, h3 {
 
 .logo h1 {
   font-size: 2rem;
-  color: var(--basil);
+  color: #6DE45F;
   margin: 0;
 }
 
@@ -60,13 +52,13 @@ main {
   max-width: 1600px;
   margin: 2rem auto;
   padding: 1rem 2rem;
-  background-color: var(--color-mint);
+  background-color: #DFF5E1;
   border-radius: 8px;
 }
 
 section {
   margin-bottom: 2rem;
-  background-color: var(--mint);
+  background-color: #DFF5E1;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -75,8 +67,8 @@ section {
 footer {
   text-align: center;
   padding: 1rem;
-  background-color: var(--wheat);
-  color: var(--ink);
+  background-color: #F5D7A1;
+  color: #2E2E2E;
 }
 
 form {
@@ -90,24 +82,24 @@ form {
 form input {
   padding: 0.5rem;
   flex: 1 1 200px;
-  border: 1px solid var(--color-wheat);
+  border: 1px solid #F5D7A1;
   border-radius: 4px;
-  background-color: var(--color-white);
-  color: var(--color-ink);
+  background-color: #FAFAFA;
+  color: #2E2E2E;
 }
 
 form button {
   padding: 0.5rem 1rem;
-  background-color: var(--color-basil);
-  color: white;
+  background-color: #6DE45F;
+  color: #FAFAFA;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 form button:hover {
-  background-color: var(--color-wheat);
-  color: var(--color-ink);
+  background-color: #F5D7A1;
+  color: #2E2E2E;
 }
 
 #results {
@@ -120,11 +112,11 @@ form button:hover {
 .recipe-card, .recipe details {
   flex: 1 1 300px;
   max-width: 300px;
-  border: 1px solid var(--color-wheat);
+  border: 1px solid #F5D7A1;
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 8px;
-  background-color: var(--color-white);
+  background-color: #FAFAFA;
   text-align: center;
 }
 
@@ -136,14 +128,14 @@ form button:hover {
 button {
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: var(--color-basil);
-  color: white;
+  background-color: #6DE45F;
+  color: #FAFAFA;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: var(--color-wheat);
-  color: var(--color-ink);
+  background-color: #F5D7A1;
+  color: #2E2E2E;
 }
