@@ -1,23 +1,34 @@
 import { searchRecipesRapidAPI, getRecipeDetails } from './features/recipeSearch.js';
 import { showNutritionBreakdown } from './features/nutritionBreakdown.js';
+import { renderMealPlanner } from './features/weeklyPlanner.js';
 
+// DOM Elements
 const resultsContainer = document.getElementById('results');
 const nutritionForm = document.getElementById('nutrition-form');
 const ingredientInput = document.getElementById('ingredientInput');
 const nutritionResult = document.getElementById('nutritionResult');
+const searchForm = document.getElementById('searchForm');
+const weekSelector = document.getElementById('weekSelector');
 
-document.getElementById('searchForm').addEventListener('submit', async (e) => {
+// 🧠 Handle Recipe Search
+searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const query = document.getElementById('query').value;
-  const cuisine = document.getElementById('cuisine').value;
-  const diet = document.getElementById('diet').value;
-  const intolerances = document.getElementById('intolerances').value;
+  const formData = new FormData(searchForm);
+  const query = formData.get('query');
+  const cuisine = formData.get('cuisine');
+  const diet = formData.get('diet');
+
+  // Handle multiple intolerances
+  const intoleranceSelect = document.getElementById('intolerances');
+  const selectedIntolerances = Array.from(intoleranceSelect.selectedOptions).map(opt => opt.value);
+  const intolerances = selectedIntolerances.join(',');
 
   const recipes = await searchRecipesRapidAPI({ query, cuisine, diet, intolerances });
   displaySearchResults(recipes);
 });
 
+// 🧠 Display Search Results
 function displaySearchResults(recipes) {
   resultsContainer.innerHTML = '';
 
@@ -47,6 +58,7 @@ function displaySearchResults(recipes) {
   });
 }
 
+// 🧠 Display Recipe Details
 function displayRecipeDetails(recipe) {
   if (!recipe) {
     resultsContainer.innerHTML = '<p>Error loading recipe details.</p>';
@@ -64,12 +76,17 @@ function displayRecipeDetails(recipe) {
         ${recipe.extendedIngredients.map(ing => `<li>${ing.original}</li>`).join('')}
       </ul>
       <h3>Instructions:</h3>
-      <p>${recipe.instructions || 'No instructions available.'}</p>
-      <button onclick="location.reload()">Back to Search</button>
+      <p>${recipe.instructions?.trim() || 'No instructions available.'}</p>
+      <button id="backToSearch">Back to Search</button>
     </div>
   `;
+
+  document.getElementById('backToSearch').addEventListener('click', () => {
+    location.reload(); // Simple reload to reset view
+  });
 }
 
+// 🧠 Nutrition Breakdown
 nutritionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -79,6 +96,7 @@ nutritionForm.addEventListener('submit', async (event) => {
   showNutritionBreakdown(userInput);
 });
 
+// 🧠 Clear Nutrition Result
 nutritionResult.addEventListener('click', (event) => {
   if (event.target.id === 'closeNutrition') {
     nutritionResult.innerHTML = '';
@@ -86,12 +104,15 @@ nutritionResult.addEventListener('click', (event) => {
   }
 });
 
-import './features/weeklyPlanner.js';
+// 🧠 Weekly Meal Planner
+weekSelector.addEventListener('change', () => {
+  const selectedWeek = weekSelector.value;
+  if (selectedWeek) {
+    renderMealPlanner(selectedWeek);
+  }
+});
 
-import { renderMealPlanner } from './features/weeklyPlanner.js';
-
-const selectedWeek = document.getElementById('weekSelector').value;
-if (selectedWeek) {
-  renderMealPlanner(selectedWeek);
+// Initial render if week is pre-selected
+if (weekSelector.value) {
+  renderMealPlanner(weekSelector.value);
 }
-

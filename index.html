@@ -9,55 +9,84 @@
 </head>
 <body>
   <header>
-    <div class="logo">
+    <div class="logo" role="banner">
       <img src="images/smarter_meal_making_logo.svg" alt="Smarter Meal Making Logo" width="40" height="40">
       <h1>Smarter Meal Making</h1>
     </div>
-    <h1><strong>Your Customized Nutrition Planner</strong></h1>
-    <nav class="main-nav">
-  <ul>
-    <li><a href="#recipe-search">Search Your Recipes</a></li>
-    <li><a href="#nutrition-breakdown">Nutrition Breakdown</a></li>
-    <li><a href="#weekly-meal-planner">Weekly Meal Planner</a></li>
-  </ul>
-</nav>
+    <h2>Your Customized Nutrition Planner</h2>
+    <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+      <ul>
+        <li><a href="#recipe-search">Search Your Recipes</a></li>
+        <li><a href="#nutrition-breakdown">Nutrition Breakdown</a></li>
+        <li><a href="#weekly-meal-planner">Weekly Meal Planner</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-    <!--Recipe Search-->
+    <!-- Recipe Search -->
     <section id="recipe-search">
       <h2>Search Your Recipes</h2>
-      <form id="searchForm">
-        <input type="text" id="query" placeholder="Search recipes...">
-        <input type="text" id="cuisine" placeholder="Cuisine (e.g. Indian)">
-        <input type="text" id="diet" placeholder="Diet (e.g. vegetarian)">
-        <input type="text" id="intolerances" placeholder="Intolerances (e.g. gluten)">
+      <form id="searchForm" aria-label="Recipe Search Form">
+        <label for="query">Search recipes:</label>
+        <input type="text" id="query" name="query" placeholder="e.g. pasta with tomato" autocomplete="off">
+
+        <label for="cuisine">Cuisine:</label>
+        <select id="cuisine" name="cuisine">
+          <option value="">Any</option>
+          <option value="Indian">Indian</option>
+          <option value="Italian">Italian</option>
+          <option value="Mexican">Mexican</option>
+          <option value="Chinese">Chinese</option>
+        </select>
+
+        <label for="diet">Diet:</label>
+        <select id="diet" name="diet">
+          <option value="">Any</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="paleo">Paleo</option>
+          <option value="ketogenic">Ketogenic</option>
+        </select>
+
+        <label for="intolerances">Intolerances:</label>
+        <select id="intolerances" name="intolerances" multiple>
+          <option value="gluten">Gluten</option>
+          <option value="dairy">Dairy</option>
+          <option value="egg">Egg</option>
+          <option value="soy">Soy</option>
+          <option value="peanut">Peanut</option>
+          <option value="shellfish">Shellfish</option>
+        </select>
+
         <button type="submit">Search</button>
       </form>
-      <div id="results"></div>
+      <div id="results" aria-live="polite"></div>
     </section>
 
-    <!--Nutrition Breakdown-->
+    <!-- Nutrition Breakdown -->
     <section id="nutrition-breakdown" class="module">
       <h2>Nutrition Breakdown</h2>
-      <form id="nutrition-form">
-        <label for="ingredientInput">Enter ingredients (e.g., "1 cup cooked rice"):</label>
-        <textarea id="ingredientInput" placeholder="Type ingredients here..." required></textarea>
+      <form id="nutrition-form" aria-label="Nutrition Analysis Form">
+        <label for="ingredientInput">Enter ingredients:</label>
+        <textarea id="ingredientInput" name="ingredients" placeholder="e.g. 1 cup cooked rice" required></textarea>
         <button type="submit">Analyze</button>
       </form>
-      <div id="nutritionResult"></div>
+      <div id="nutritionResult" aria-live="polite"></div>
     </section>
 
-    <!--Weekly Meal Planner-->
+    <!-- Weekly Meal Planner -->
     <section id="weekly-meal-planner">
       <h2>Weekly Meal Planner with Nutrition Summary</h2>
       <label for="weekSelector">Choose a week:</label>
-      <input type="week" id="weekSelector">
-      <div id="weeklyPlanner"></div>
+      <input type="week" id="weekSelector" name="weekSelector">
+      <div id="weeklyPlanner" aria-live="polite"></div>
     </section>
   </main>
 
-  <footer> WDD 330 | Final Project on Smarter Meal Making | Designed and Developed by Sree Ranganath </footer>
+  <footer>
+    <p><strong>WDD 330 | Final Project on Smarter Meal Making | Designed and Developed by Sree Ranganath</strong></p>
+  </footer>
 
   <script type="module" src="./js/main.js"></script>
 </body>
