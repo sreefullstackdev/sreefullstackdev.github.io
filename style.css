@@ -2,23 +2,23 @@ body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #FAFAFA;
-  color: #2E2E2E;
+  background-color:#2E2E2E;
 }
 
 header {
-  background-color: #DFF5E1;
+  background-color:#6DE45F;
   text-align: center;
   padding: 1.5rem;
+  border-radius: 20px;
 }
 
 header h1 {
-  margin: 0;
+  margin: 1.5rem;
   font-size: 2rem;
-  color: #6DE45F;
+  color: #2E2E2E;
 }
 
-h1, h2, h3 {
+h2, h3 {
   color: #2E2E2E;
   text-align: center;
 }
@@ -32,13 +32,14 @@ h1, h2, h3 {
 }
 
 .logo img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
 }
 
 .logo h1 {
   font-size: 2rem;
-  color: #6DE45F;
+  color: #2E2E2E;
   margin: 0;
 }
 
@@ -52,23 +53,53 @@ main {
   max-width: 1600px;
   margin: 2rem auto;
   padding: 1rem 2rem;
-  background-color: #DFF5E1;
-  border-radius: 8px;
+  background-color:#6DE45F;
+  border-radius: 20px;
 }
 
+.main-nav {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #0077cc;
+}
+
+
 section {
+  padding-top: 6rem;
   margin-bottom: 2rem;
-  background-color: #DFF5E1;
+  background-color:#FCF8DD;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 footer {
   text-align: center;
   padding: 1rem;
-  background-color: #F5D7A1;
-  color: #2E2E2E;
+  background-color:#6DE45F;
+  font-size: large;
+  border-radius: 20px;
 }
 
 form {
@@ -115,14 +146,15 @@ form button:hover {
   border: 1px solid #F5D7A1;
   padding: 1rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: 30px;
   background-color: #FAFAFA;
   text-align: center;
 }
 
 .recipe-card img, .recipe-details img {
   max-width: 100%;  
-  border-radius: 10px;
+  border-radius: 15px;
+  image-orientation: 0rad;
 }
 
 button {
@@ -139,3 +171,221 @@ button:hover {
   background-color: #F5D7A1;
   color: #2E2E2E;
 }
+
+#nutritionResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  margin-top: 2rem;
+}
+
+.food-card {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 300px;
+  margin-bottom: 1rem;
+}
+
+.close-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #365f3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #2c4d32;
+}
+
+.hidden {
+  display: none;
+}
+
+.planner-grid {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.meal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.meal-table th,
+.meal-table td {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.meal-cell {
+  background-color: #fff;
+  cursor: text;
+}
+
+.meal-cell:focus {
+  outline: 2px solid #365f3e;
+  background-color: #e6ffe6;
+}
+
+#weeklyPlanner .close-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nutrition-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+.nutrition-summary span {
+  flex: 1;
+  text-align: center;
+  border: #0077cc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  header h1,
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .logo img {
+    width: 100px;
+    height: 100px;
+  }
+
+  main {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  form input {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  #results {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recipe-card,
+  .recipe-details {
+    max-width: 100%;
+  }
+
+  .planner-grid {
+    padding: 0.5rem;
+  }
+
+  .meal-table th,
+  .meal-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .nutrition-summary {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+  .meal-table {
+    overflow-x: auto;
+    width: 100%;
+    display: block;
+  }
+
+  .meal-table thead {
+    display: none; 
+  }
+
+  .meal-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+  }
+
+  .meal-table td {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    border: none;
+  }
+
+  .meal-table td:nth-child(1) {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .meal-table td:nth-child(2)::before {
+    content: "Breakfast: ";
+    font-weight: bold;
+  }
+
+  .meal-table td:nth-child(3)::before {
+    content: "Lunch: ";
+    font-weight: bold;
+  }
+
+  .meal-table td:nth-child(4)::before {
+    content: "Dinner: ";
+    font-weight: bold;
+  }
+
+  .meal-table td:nth-child(5)::before {
+    content: "Total: ";
+    font-weight: bold;
+    display: block;
+    margin-top: 0.5rem;
+    background-color: #eef;
+    padding: 0.4rem;
+    border-radius: 4px;
+  }
+

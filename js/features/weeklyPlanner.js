@@ -1,93 +1,81 @@
-// js/features/weeklyPlanner.js
+import { fetchMealOptions, fetchNutritionData, calculateTotalNutrition } from './nutritionService.js';
 
-import { generateGroceryList } from './groceryList.js';
-
-const weekSelector = document.getElementById('weekSelector');
 const plannerContainer = document.getElementById('weeklyPlanner');
+const weekSelector = document.getElementById('weekSelector');
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const meals = ['Breakfast', 'Lunch', 'Dinner'];
+export async function renderMealPlanner(week) {
+  const mealOptions = await fetchMealOptions();
 
-function loadMealPlan(week) {
-  const saved = localStorage.getItem(`mealPlan-${week}`);
-  return saved ? JSON.parse(saved) : null;
+  plannerContainer.innerHTML = `
+    <h2>Meal Plan for Week: ${week}</h2>
+    <table id="mealPlannerTable">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Breakfast</th>
+          <th>Lunch</th>
+          <th>Dinner</th>
+          <th>Total Nutrition Intake</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${generatePlannerRows(mealOptions)}
+      </tbody>
+    </table>
+  `;
+
+  attachDropdownListeners();
 }
 
-function saveMealPlan(week) {
-  const rows = document.querySelectorAll('.meal-table tr');
-  const plan = {};
-
-  rows.forEach((row, index) => {
-    if (index === 0) return;
-    const day = row.children[0].textContent;
-    plan[day] = {
-      Breakfast: row.children[1].textContent,
-      Lunch: row.children[2].textContent,
-      Dinner: row.children[3].textContent
-    };
-  });
-
-  localStorage.setItem(`mealPlan-${week}`, JSON.stringify(plan));
-  alert('✅ Meal plan saved!');
+function generatePlannerRows(mealOptions) {
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  return days.map(day => `
+    <tr data-day="${day}">
+      <td>${day}</td>
+      <td>${createDropdown(`${day}-breakfast`, mealOptions)}</td>
+      <td>${createDropdown(`${day}-lunch`, mealOptions)}</td>
+      <td>${createDropdown(`${day}-dinner`, mealOptions)}</td>
+      <td class="nutrition-summary" id="${day}-summary">—</td>
+    </tr>
+  `).join('');
 }
 
-function renderMealPlanner(week) {
-  plannerContainer.innerHTML = `<h3>Meal Plan for Week: ${week}</h3>`;
-  plannerContainer.classList.remove('hidden');
-
-  const table = document.createElement('table');
-  table.className = 'meal-table';
-
-  const headerRow = document.createElement('tr');
-  headerRow.innerHTML = `<th>Day</th>${meals.map(meal => `<th>${meal}</th>`).join('')}`;
-  table.appendChild(headerRow);
-
-  const savedPlan = loadMealPlan(week);
-
-  days.forEach(day => {
-    const row = document.createElement('tr');
-    row.innerHTML = `<td>${day}</td>` + meals.map(meal => {
-      const value = savedPlan?.[day]?.[meal] || '';
-      return `<td contenteditable="true" class="meal-cell">${value}</td>`;
-    }).join('');
-    table.appendChild(row);
-  });
-
-  plannerContainer.appendChild(table);
-
-  const saveBtn = document.createElement('button');
-  saveBtn.textContent = 'Save Meal Plan';
-  saveBtn.className = 'close-btn';
-  saveBtn.addEventListener('click', () => saveMealPlan(week));
-
-  const clearBtn = document.createElement('button');
-  clearBtn.textContent = 'Clear Week';
-  clearBtn.className = 'close-btn';
-  clearBtn.style.marginLeft = '1rem';
-  clearBtn.addEventListener('click', () => {
-    if (confirm(`Clear meal plan for Week ${week}?`)) {
-      localStorage.removeItem(`mealPlan-${week}`);
-      renderMealPlanner(week);
-    }
-  });
-
-  const groceryBtn = document.createElement('button');
-  groceryBtn.textContent = 'Generate Grocery List';
-  groceryBtn.className = 'close-btn';
-  groceryBtn.style.marginLeft = '1rem';
-  groceryBtn.addEventListener('click', () => generateGroceryList(week));
-
-  const buttonRow = document.createElement('div');
-  buttonRow.style.marginTop = '1rem';
-  buttonRow.appendChild(saveBtn);
-  buttonRow.appendChild(clearBtn);
-  buttonRow.appendChild(groceryBtn);
-
-  plannerContainer.appendChild(buttonRow);
+function createDropdown(id, options) {
+  const optionTags = options.map(meal => `<option value="${meal}">${meal}</option>`).join('');
+  return `<select id="${id}" class="meal-dropdown"><option value="">-- Select --</option>${optionTags}</select>`;
 }
 
-weekSelector.addEventListener('change', () => {
-  const selectedWeek = weekSelector.value;
-  if (!selectedWeek) return;
+function attachDropdownListeners() {
+  const dropdowns = document.querySelectorAll('.meal-dropdown');
+  dropdowns.forEach(dropdown => {
+    dropdown.addEventListener('change', async () => {
+      const row = dropdown.closest('tr');
+      const day = row.getAttribute('data-day');
+
+      const breakfast = document.getElementById(`${day}-breakfast`).value;
+      const lunch = document.getElementById(`${day}-lunch`).value;
+      const dinner = document.getElementById(`${day}-dinner`).value;
+
+      const selectedMeals = [breakfast, lunch, dinner].filter(Boolean);
+      const nutritionData = await fetchNutritionData(selectedMeals);
+      const totals = calculateTotalNutrition(nutritionData);
+
+      updateNutritionSummary(day, totals);
+    });
+  });
+}
+
+function updateNutritionSummary(day, totals) {
+  const summaryCell = document.getElementById(`${day}-summary`);
+  summaryCell.innerHTML = `
+    <strong>Calories:</strong> ${totals.calories.toFixed(0)} kcal<br>
+    <strong>Protein:</strong> ${totals.protein.toFixed(1)} g<br>
+    <strong>Carbs:</strong> ${totals.carbs.toFixed(1)} g<br>
+    <strong>Fat:</strong> ${totals.fat.toFixed(1)} g
+  `;
+}
+
+weekSelector.addEventListener('change', (e) => {
+  const selectedWeek = e.target.value;
   renderMealPlanner(selectedWeek);
 });

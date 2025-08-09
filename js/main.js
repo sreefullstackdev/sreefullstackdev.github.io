@@ -1,6 +1,12 @@
+// main.js
+
 import { searchRecipesRapidAPI, getRecipeDetails } from './features/recipeSearch.js';
+import { showNutritionBreakdown } from './features/nutritionBreakdown.js';
 
 const resultsContainer = document.getElementById('results');
+const nutritionForm = document.getElementById('nutrition-form');
+const ingredientInput = document.getElementById('ingredientInput');
+const nutritionResult = document.getElementById('nutritionResult');
 
 document.getElementById('searchForm').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -65,3 +71,29 @@ function displayRecipeDetails(recipe) {
     </div>
   `;
 }
+
+nutritionForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const userInput = ingredientInput.value.trim();
+  if (!userInput) return;
+
+  showNutritionBreakdown(userInput);
+});
+
+nutritionResult.addEventListener('click', (event) => {
+  if (event.target.id === 'closeNutrition') {
+    nutritionResult.innerHTML = '';
+    ingredientInput.value = '';
+  }
+});
+
+import './features/weeklyPlanner.js';
+
+import { renderMealPlanner } from './features/weeklyPlanner.js';
+
+const selectedWeek = document.getElementById('weekSelector').value;
+if (selectedWeek) {
+  renderMealPlanner(selectedWeek);
+}
+
