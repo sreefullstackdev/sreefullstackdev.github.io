@@ -1,5 +1,3 @@
-// main.js
-
 import { searchRecipesRapidAPI, getRecipeDetails } from './features/recipeSearch.js';
 import { showNutritionBreakdown } from './features/nutritionBreakdown.js';
 
