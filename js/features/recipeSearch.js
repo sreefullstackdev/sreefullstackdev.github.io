@@ -9,9 +9,8 @@ export async function searchRecipesRapidAPI({ query, cuisine, diet, intolerances
   if (diet) url.searchParams.append('diet', diet);
   if (intolerances) url.searchParams.append('intolerances', intolerances);
 
-  url.searchParams.append('number', '12'); // Limit results
-  url.searchParams.append('addRecipeInformation', 'true'); // Include readyInMinutes, servings, etc.
-
+  url.searchParams.append('number', '12'); 
+  url.searchParams.append('addRecipeInformation', 'true'); 
   try {
     const response = await fetch(url.toString(), {
       method: 'GET',
