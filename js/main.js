@@ -10,7 +10,7 @@ const nutritionResult = document.getElementById('nutritionResult');
 const searchForm = document.getElementById('searchForm');
 const weekSelector = document.getElementById('weekSelector');
 
-// 🧠 Handle Recipe Search
+// Handle Recipe Search
 searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -28,7 +28,7 @@ searchForm.addEventListener('submit', async (e) => {
   displaySearchResults(recipes);
 });
 
-// 🧠 Display Search Results
+// Display Search Results
 function displaySearchResults(recipes) {
   resultsContainer.innerHTML = '';
 
@@ -58,7 +58,7 @@ function displaySearchResults(recipes) {
   });
 }
 
-// 🧠 Display Recipe Details
+// Display Recipe Details
 function displayRecipeDetails(recipe) {
   if (!recipe) {
     resultsContainer.innerHTML = '<p>Error loading recipe details.</p>';
@@ -86,7 +86,7 @@ function displayRecipeDetails(recipe) {
   });
 }
 
-// 🧠 Nutrition Breakdown
+// Nutrition Breakdown
 nutritionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -96,7 +96,7 @@ nutritionForm.addEventListener('submit', async (event) => {
   showNutritionBreakdown(userInput);
 });
 
-// 🧠 Clear Nutrition Result
+// Clear Nutrition Result
 nutritionResult.addEventListener('click', (event) => {
   if (event.target.id === 'closeNutrition') {
     nutritionResult.innerHTML = '';
@@ -104,7 +104,7 @@ nutritionResult.addEventListener('click', (event) => {
   }
 });
 
-// 🧠 Weekly Meal Planner
+// Weekly Meal Planner
 weekSelector.addEventListener('change', () => {
   const selectedWeek = weekSelector.value;
   if (selectedWeek) {
