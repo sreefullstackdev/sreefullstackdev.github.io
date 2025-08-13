@@ -18,3 +18,4 @@ Source: https://github.com/sreefullstackdev/sreefullstackdev.github.io.git
 Site: https://sreefullstackdev.github.io/
 Trello Board: https://trello.com/b/MxHKagea/smarter-meal-making (Week 5)
 Trello Board: https://trello.com/c/WNAiBZgK/3-week6-feature-building (Week 6)
+Trello Board: https://trello.com/c/vV2Bj2Rt/4-week7-testing-and-finalization (Week 7)
