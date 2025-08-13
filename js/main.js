@@ -19,7 +19,6 @@ searchForm.addEventListener('submit', async (e) => {
   const cuisine = formData.get('cuisine');
   const diet = formData.get('diet');
 
-  // Handle multiple intolerances
   const intoleranceSelect = document.getElementById('intolerances');
   const selectedIntolerances = Array.from(intoleranceSelect.selectedOptions).map(opt => opt.value);
   const intolerances = selectedIntolerances.join(',');
@@ -82,7 +81,7 @@ function displayRecipeDetails(recipe) {
   `;
 
   document.getElementById('backToSearch').addEventListener('click', () => {
-    location.reload(); // Simple reload to reset view
+    location.reload();
   });
 }
 
@@ -112,7 +111,50 @@ weekSelector.addEventListener('change', () => {
   }
 });
 
-// Initial render if week is pre-selected
 if (weekSelector.value) {
   renderMealPlanner(weekSelector.value);
 }
+
+// 🔐 Authentication Modal Logic
+const signInBtn = document.getElementById('signInBtn');
+const signUpBtn = document.getElementById('signUpBtn');
+const modalContainer = document.getElementById('modal-container');
+
+function createModal(type) {
+  modalContainer.innerHTML = '';
+  modalContainer.style.display = 'flex';
+  modalContainer.setAttribute('aria-hidden', 'false');
+
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+
+  const title = document.createElement('h2');
+  title.textContent = type === 'signin' ? 'Sign In' : 'Sign Up';
+
+  const emailInput = document.createElement('input');
+  emailInput.type = 'email';
+  emailInput.placeholder = 'Email';
+  emailInput.required = true;
+
+  const passwordInput = document.createElement('input');
+  passwordInput.type = 'password';
+  passwordInput.placeholder = 'Password';
+  passwordInput.required = true;
+
+  const submitBtn = document.createElement('button');
+  submitBtn.textContent = type === 'signin' ? 'Login' : 'Register';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = 'Close';
+  closeBtn.className = 'close-btn';
+  closeBtn.onclick = () => {
+    modalContainer.style.display = 'none';
+    modalContainer.setAttribute('aria-hidden', 'true');
+  };
+
+  modal.append(title, emailInput, passwordInput, submitBtn, closeBtn);
+  modalContainer.appendChild(modal);
+}
+
+signInBtn?.addEventListener('click', () => createModal('signin'));
+signUpBtn?.addEventListener('click', () => createModal('signup'));
